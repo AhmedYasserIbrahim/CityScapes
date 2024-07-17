@@ -28,5 +28,5 @@ We've also included a detailed blueprint that walks through the entire process, 
 
 Feel free to fork this repository and adapt the Make Academy workflows and Eden AI integrations for your own use case! If you have any questions or feedback, please don't hesitate to reach out.
 
-**I made sure to only include free platforms that are accessible to everyone**
-**Feel free to comment to suggest any changes or connect**
+**I made sure to only include free platforms that are accessible to everyone.**
+**Feel free to comment to suggest any changes or connect.**
