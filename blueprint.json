@@ -1,0 +1,708 @@
+{
+    "name": "CityScapes",
+    "flow": [
+        {
+            "id": 23,
+            "module": "edenai:textgeneration",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 2183073
+            },
+            "mapper": {
+                "text": "Give me the name of only one unique city that I might not know. Reply in only one line.",
+                "providers": [
+                    "meta"
+                ],
+                "max_tokens": "250",
+                "response_as_dict": false
+            },
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "settings": {
+                            "mode": "chose"
+                        },
+                        "providers": {
+                            "mode": "chose"
+                        },
+                        "response_as_dict": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "edenai"
+                            },
+                            "label": "My Eden AI connection"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:edenai",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "text",
+                        "type": "text",
+                        "label": "Text",
+                        "required": true
+                    },
+                    {
+                        "name": "response_as_dict",
+                        "type": "boolean",
+                        "label": "Response as Dict",
+                        "required": true
+                    },
+                    {
+                        "name": "temperature",
+                        "type": "number",
+                        "label": "Temperature"
+                    },
+                    {
+                        "name": "max_tokens",
+                        "type": "integer",
+                        "label": "Max tokens"
+                    },
+                    {
+                        "name": "providers",
+                        "type": "select",
+                        "label": "Providers",
+                        "multiple": true,
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "cohere",
+                                "google",
+                                "openai",
+                                "anthropic",
+                                "ai21labs",
+                                "mistral",
+                                "amazon",
+                                "meta"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "settings",
+                        "spec": [
+                            {
+                                "name": "provider",
+                                "type": "select",
+                                "label": "Provider",
+                                "options": [
+                                    {
+                                        "label": "Cohere",
+                                        "value": "cohere"
+                                    },
+                                    {
+                                        "label": "OpenAI",
+                                        "value": "openai"
+                                    },
+                                    {
+                                        "label": "Anthropic",
+                                        "value": "anthropic"
+                                    },
+                                    {
+                                        "label": "Mistral",
+                                        "value": "mistral"
+                                    },
+                                    {
+                                        "label": "Google",
+                                        "value": "google"
+                                    },
+                                    {
+                                        "label": "AI21Labs",
+                                        "value": "ai21labs"
+                                    },
+                                    {
+                                        "label": "Amazon",
+                                        "value": "amazon"
+                                    },
+                                    {
+                                        "label": "Meta",
+                                        "value": "meta"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "model",
+                                "type": "select",
+                                "label": "Model",
+                                "options": [
+                                    {
+                                        "label": "openai: text-davinci-003",
+                                        "value": "text-davinci-003"
+                                    },
+                                    {
+                                        "label": "openai: text-davinci-002",
+                                        "value": "text-davinci-002"
+                                    },
+                                    {
+                                        "label": "openai: text-curie-001",
+                                        "value": "text-curie-001"
+                                    },
+                                    {
+                                        "label": "openai: text-babbage-001",
+                                        "value": "text-babbage-001"
+                                    },
+                                    {
+                                        "label": "openai: text-ada-001",
+                                        "value": "text-ada-001"
+                                    },
+                                    {
+                                        "label": "openai: gpt-3.5-turbo-instruct",
+                                        "value": "gpt-3.5-turbo-instruct"
+                                    },
+                                    {
+                                        "label": "cohere: base",
+                                        "value": "base"
+                                    },
+                                    {
+                                        "label": "cohere: base-light",
+                                        "value": "base-light"
+                                    },
+                                    {
+                                        "label": "cohere: command",
+                                        "value": "command"
+                                    },
+                                    {
+                                        "label": "cohere: command-light",
+                                        "value": "command-light"
+                                    },
+                                    {
+                                        "label": "cohere: command-light-nightly",
+                                        "value": "command-light-nightly"
+                                    },
+                                    {
+                                        "label": "cohere: command-nightly",
+                                        "value": "command-nightly"
+                                    },
+                                    {
+                                        "label": "ai21labs: j2-grande-instruct",
+                                        "value": "j2-grande-instruct"
+                                    },
+                                    {
+                                        "label": "ai21labs: j2-jumbo-instruct",
+                                        "value": "j2-jumbo-instruct"
+                                    },
+                                    {
+                                        "label": "ai21labs: j2-mid",
+                                        "value": "j2-mid"
+                                    },
+                                    {
+                                        "label": "ai21labs: j2-ultra",
+                                        "value": "j2-ultra"
+                                    },
+                                    {
+                                        "label": "anthropic: claude-v2",
+                                        "value": "claude-v2"
+                                    },
+                                    {
+                                        "label": "anthropic: claude-v1",
+                                        "value": "claude-v1"
+                                    },
+                                    {
+                                        "label": "anthropic: claude-instant-v1",
+                                        "value": "claude-instant-v1"
+                                    },
+                                    {
+                                        "label": "mistral: mistral-7B-Instruct",
+                                        "value": "mistral-7B-Instruct"
+                                    },
+                                    {
+                                        "label": "mistral: mistral-7B-OpenOrca",
+                                        "value": "mistral-7B-OpenOrca"
+                                    },
+                                    {
+                                        "label": "mistral: openHermes-2-mistral-7B",
+                                        "value": "openHermes-2-mistral-7B"
+                                    },
+                                    {
+                                        "label": "amazon: titan-text-express-v1",
+                                        "value": "titan-text-express-v1"
+                                    },
+                                    {
+                                        "label": "amazon: titan-text-lite-v1",
+                                        "value": "titan-text-lite-v1"
+                                    },
+                                    {
+                                        "label": "amazon: titan-tg1-large",
+                                        "value": "titan-tg1-large"
+                                    },
+                                    {
+                                        "label": "meta: llama2-13b-chat-v1",
+                                        "value": "llama2-13b-chat-v1"
+                                    },
+                                    {
+                                        "label": "meta: llama2-70b-chat-v1",
+                                        "value": "llama2-70b-chat-v1"
+                                    }
+                                ]
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Settings"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 6,
+            "module": "util:SetVariables",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "scope": "roundtrip",
+                "variables": [
+                    {
+                        "name": "City Generated",
+                        "value": "{{23.result[].generated_text}}"
+                    }
+                ]
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "scope": {
+                            "label": "One cycle"
+                        },
+                        "variables": {
+                            "items": [
+                                null
+                            ]
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "name": "variables",
+                        "spec": [
+                            {
+                                "name": "name",
+                                "type": "text",
+                                "label": "Variable name",
+                                "required": true
+                            },
+                            {
+                                "name": "value",
+                                "type": "any",
+                                "label": "Variable value"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Variables"
+                    },
+                    {
+                        "name": "scope",
+                        "type": "select",
+                        "label": "Variable lifetime",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "roundtrip",
+                                "execution"
+                            ]
+                        }
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "City Generated",
+                        "type": "any",
+                        "label": "City Generated"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 15,
+            "module": "edenai:imagegeneration",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 2183073
+            },
+            "mapper": {
+                "text": "Create a realistic wallpaper of the city {{6.`City Generated`}}",
+                "providers": [
+                    "openai"
+                ],
+                "num_images": "1",
+                "resolution": "1024x1024",
+                "response_as_dict": false
+            },
+            "metadata": {
+                "designer": {
+                    "x": 600,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "settings": {
+                            "mode": "chose"
+                        },
+                        "providers": {
+                            "mode": "chose"
+                        },
+                        "resolution": {
+                            "mode": "chose",
+                            "label": "1024x1024"
+                        },
+                        "response_as_dict": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "edenai"
+                            },
+                            "label": "My Eden AI connection"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:edenai",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "text",
+                        "type": "text",
+                        "label": "Text",
+                        "required": true
+                    },
+                    {
+                        "name": "resolution",
+                        "type": "select",
+                        "label": "Resolution",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "256x256",
+                                "512x512",
+                                "1024x1024"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "providers",
+                        "type": "select",
+                        "label": "Providers",
+                        "multiple": true,
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "openai",
+                                "deepai",
+                                "stabilityai",
+                                "replicate",
+                                "amazon"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "settings",
+                        "spec": [
+                            {
+                                "name": "provider",
+                                "type": "select",
+                                "label": "Provider",
+                                "options": [
+                                    {
+                                        "label": "Dall-E OpenAI",
+                                        "value": "openai"
+                                    },
+                                    {
+                                        "label": "DeepAI",
+                                        "value": "deepai"
+                                    },
+                                    {
+                                        "label": "StabilityAI",
+                                        "value": "stabilityai"
+                                    },
+                                    {
+                                        "label": "Replicate",
+                                        "value": "replicate"
+                                    },
+                                    {
+                                        "label": "Amazon",
+                                        "value": "amazon"
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "model",
+                                "type": "select",
+                                "label": "Model",
+                                "options": [
+                                    {
+                                        "label": "Dall-E OpenAI: dall-e-2",
+                                        "value": "dall-e-2"
+                                    },
+                                    {
+                                        "label": "Dall-E OpenAI: dall-e-3",
+                                        "value": "dall-e-3"
+                                    },
+                                    {
+                                        "label": "StabilityAI: esrgan-v1-x2plus",
+                                        "value": "esrgan-v1-x2plus"
+                                    },
+                                    {
+                                        "label": "StabilityAI: stable-diffusion-v1-6",
+                                        "value": "stable-diffusion-v1-6"
+                                    },
+                                    {
+                                        "label": "StabilityAI: stable-diffusion-xl-1024-v0-9",
+                                        "value": "stable-diffusion-xl-1024-v0-9"
+                                    },
+                                    {
+                                        "label": "StabilityAI: stable-diffusion-xl-1024-v1-0",
+                                        "value": "stable-diffusion-xl-1024-v1-0"
+                                    },
+                                    {
+                                        "label": "StabilityAI: stable-diffusion-xl-beta-v2-2-2",
+                                        "value": "stable-diffusion-xl-beta-v2-2-2"
+                                    },
+                                    {
+                                        "label": "replicate: anime-style",
+                                        "value": "anime-style"
+                                    },
+                                    {
+                                        "label": "replicate: classic",
+                                        "value": "classic"
+                                    },
+                                    {
+                                        "label": "replicate: vintedois-diffusion",
+                                        "value": "vintedois-diffusion"
+                                    },
+                                    {
+                                        "label": "amazon: titan-image-generator-v1_premium",
+                                        "value": "titan-image-generator-v1_premium"
+                                    },
+                                    {
+                                        "label": "amazon: titan-image-generator-v1_standard",
+                                        "value": "titan-image-generator-v1_standard"
+                                    }
+                                ]
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Settings"
+                    },
+                    {
+                        "name": "response_as_dict",
+                        "type": "boolean",
+                        "label": "Response as Dict",
+                        "required": true
+                    },
+                    {
+                        "name": "num_images",
+                        "type": "integer",
+                        "label": "Number of images"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 24,
+            "module": "pinterest:createPin",
+            "version": 2,
+            "parameters": {
+                "__IMTCONN__": 2213739
+            },
+            "mapper": {
+                "title": "{{6.`City Generated`}} Wallpaper",
+                "board_id": "1077908560753448500",
+                "description": "This is a wallpaper of {{6.`City Generated`}} #city #town #country #art #ai #photograhpy #nature #wallpaper ",
+                "media_source": {
+                    "url": "{{15.result[].items[].image_resource_url}}",
+                    "source_type": "image_url"
+                }
+            },
+            "metadata": {
+                "designer": {
+                    "x": 900,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "board_id": {
+                            "mode": "chose",
+                            "label": "City Wallpapers"
+                        },
+                        "media_source": {
+                            "nested": {
+                                "is_standard": {
+                                    "mode": "chose"
+                                },
+                                "source_type": {
+                                    "mode": "chose",
+                                    "label": "Image URL"
+                                }
+                            }
+                        },
+                        "ad_account_id": {
+                            "mode": "chose",
+                            "label": "Empty"
+                        },
+                        "parent_pin_id": {
+                            "mode": "chose",
+                            "label": "Empty"
+                        },
+                        "board_section_id": {
+                            "mode": "chose",
+                            "label": "Empty"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "pinterest2"
+                            },
+                            "label": "My pinterest connection (yasserahmed855)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:pinterest2",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "media_source",
+                        "spec": [
+                            {
+                                "name": "source_type",
+                                "type": "select",
+                                "label": "Source Type",
+                                "required": true,
+                                "validate": {
+                                    "enum": [
+                                        "video_id",
+                                        "image_url",
+                                        "multiple_image_urls",
+                                        "image_base64",
+                                        "multiple_image_base64"
+                                    ]
+                                }
+                            },
+                            {
+                                "name": "url",
+                                "type": "url",
+                                "label": "Image URL",
+                                "required": true
+                            },
+                            {
+                                "name": "is_standard",
+                                "type": "boolean",
+                                "label": "Is Standard"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Media Source",
+                        "required": true
+                    },
+                    {
+                        "name": "board_id",
+                        "type": "select",
+                        "label": "Board",
+                        "required": true
+                    },
+                    {
+                        "name": "title",
+                        "type": "text",
+                        "label": "Title"
+                    },
+                    {
+                        "name": "description",
+                        "type": "text",
+                        "label": "Description",
+                        "validate": {
+                            "max": 800
+                        }
+                    },
+                    {
+                        "name": "alt_text",
+                        "type": "text",
+                        "label": "Alternative Text"
+                    },
+                    {
+                        "name": "dominant_color",
+                        "type": "color",
+                        "label": "Dominant Color"
+                    },
+                    {
+                        "name": "link",
+                        "type": "url",
+                        "label": "Link"
+                    },
+                    {
+                        "name": "parent_pin_id",
+                        "type": "select",
+                        "label": "Parent Pin"
+                    },
+                    {
+                        "name": "note",
+                        "type": "text",
+                        "label": "Note"
+                    },
+                    {
+                        "name": "ad_account_id",
+                        "type": "select",
+                        "label": "Ad Account"
+                    },
+                    {
+                        "name": "board_section_id",
+                        "type": "select",
+                        "label": "Board Section"
+                    }
+                ]
+            }
+        }
+    ],
+    "metadata": {
+        "instant": false,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "eu2.make.com"
+    }
+}
